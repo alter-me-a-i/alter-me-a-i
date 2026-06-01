@@ -1,0 +1,257 @@
+:root {
+  --bg: #15151f;
+  --panel: #1e1e2e;
+  --panel-2: #262638;
+  --text: #f5f6fa;
+  --muted: #a3a3bd;
+  --line: rgba(255, 255, 255, 0.08);
+  --accent: #6c5ce7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  width: 320px;
+  background: var(--bg);
+  color: var(--text);
+  font:
+    13px/1.4 -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+}
+
+.pp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--line);
+}
+.pp-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.pp-logo {
+  font-size: 22px;
+}
+.pp-title {
+  font-weight: 700;
+  font-size: 15px;
+}
+.pp-subtitle {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* master switch */
+.pp-switch {
+  position: relative;
+  display: inline-block;
+  width: 42px;
+  height: 24px;
+}
+.pp-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.pp-slider {
+  position: absolute;
+  inset: 0;
+  background: #3a3a52;
+  border-radius: 999px;
+  transition: 0.18s;
+}
+.pp-slider::before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  border-radius: 50%;
+  transition: 0.18s;
+}
+.pp-switch input:checked + .pp-slider {
+  background: var(--accent);
+}
+.pp-switch input:checked + .pp-slider::before {
+  transform: translateX(18px);
+}
+
+.pp-site {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--panel);
+}
+.pp-site-label {
+  color: var(--muted);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.pp-site-host {
+  font-weight: 600;
+  max-width: 200px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.pp-scope {
+  display: flex;
+  gap: 4px;
+  padding: 12px 16px 4px;
+}
+.pp-scope-btn {
+  flex: 1;
+  padding: 7px 0;
+  background: var(--panel-2);
+  color: var(--muted);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: 600;
+}
+.pp-scope-btn.is-active {
+  color: var(--text);
+  border-color: var(--accent);
+  background: rgba(108, 92, 231, 0.16);
+}
+
+.pp-personas {
+  padding: 8px 16px;
+  display: grid;
+  gap: 8px;
+}
+.pp-persona {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 12px;
+  background: var(--panel);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  color: inherit;
+}
+.pp-persona:hover {
+  background: var(--panel-2);
+}
+.pp-persona.is-active {
+  border-color: var(--p-accent, var(--accent));
+  background: rgba(108, 92, 231, 0.12);
+}
+.pp-persona-emoji {
+  font-size: 22px;
+  flex: none;
+}
+.pp-persona-body {
+  flex: 1;
+  min-width: 0;
+}
+.pp-persona-name {
+  font-weight: 700;
+}
+.pp-persona-tag {
+  color: var(--muted);
+  font-size: 11px;
+}
+.pp-persona-check {
+  flex: none;
+  color: var(--p-accent, var(--accent));
+  font-weight: 700;
+  opacity: 0;
+}
+.pp-persona.is-active .pp-persona-check {
+  opacity: 1;
+}
+
+.pp-features {
+  padding: 6px 16px 12px;
+  display: grid;
+  gap: 4px;
+  border-top: 1px solid var(--line);
+}
+.pp-feature {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 12px;
+}
+.pp-feature.on {
+  color: var(--text);
+}
+.pp-feature .dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3a3a52;
+  flex: none;
+}
+.pp-feature.on .dot {
+  background: #00b894;
+}
+
+.pp-actions {
+  display: grid;
+  gap: 8px;
+  padding: 12px 16px 16px;
+  border-top: 1px solid var(--line);
+}
+.pp-btn {
+  padding: 9px 0;
+  border-radius: 8px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.pp-btn:hover {
+  background: #30304a;
+}
+.pp-btn-ghost {
+  background: transparent;
+}
+
+.pp-toast {
+  position: fixed;
+  left: 50%;
+  bottom: 12px;
+  transform: translateX(-50%) translateY(20px);
+  background: #00b894;
+  color: #06281f;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 7px 14px;
+  border-radius: 999px;
+  opacity: 0;
+  pointer-events: none;
+  transition: 0.2s;
+}
+.pp-toast.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+body.is-disabled .pp-scope,
+body.is-disabled .pp-personas,
+body.is-disabled .pp-features {
+  opacity: 0.45;
+  pointer-events: none;
+}

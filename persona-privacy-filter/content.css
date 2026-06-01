@@ -1,0 +1,72 @@
+/* Redacted spans: blurred until clicked. */
+.persona-redacted {
+  filter: blur(5px);
+  background: rgba(108, 92, 231, 0.12);
+  border-radius: 3px;
+  padding: 0 2px;
+  cursor: pointer;
+  transition: filter 0.12s ease;
+  -webkit-user-select: none;
+  user-select: none;
+}
+.persona-redacted.revealed {
+  filter: none;
+  background: rgba(108, 92, 231, 0.18);
+  -webkit-user-select: text;
+  user-select: text;
+}
+
+/* LLM composer warning banner. */
+.persona-llm-banner {
+  position: fixed;
+  z-index: 2147483647;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  max-width: min(560px, calc(100vw - 32px));
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 12px 14px;
+  background: #1e1e2e;
+  color: #f5f6fa;
+  border: 1px solid rgba(108, 92, 231, 0.6);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+  font:
+    13px/1.45 -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.18s ease,
+    transform 0.18s ease;
+}
+.persona-llm-banner.show {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: auto;
+}
+.persona-llm-icon {
+  font-size: 16px;
+  line-height: 1.3;
+}
+.persona-llm-text {
+  flex: 1;
+}
+.persona-llm-dismiss {
+  flex: none;
+  background: transparent;
+  border: none;
+  color: #b8b8d1;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0 2px;
+  line-height: 1.3;
+}
+.persona-llm-dismiss:hover {
+  color: #fff;
+}

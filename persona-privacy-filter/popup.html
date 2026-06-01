@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Persona</title>
+    <link rel="stylesheet" href="popup.css" />
+  </head>
+  <body>
+    <header class="pp-header">
+      <div class="pp-brand">
+        <span class="pp-logo" id="brandEmoji">🛡️</span>
+        <div>
+          <div class="pp-title">Persona</div>
+          <div class="pp-subtitle">Privacy filter</div>
+        </div>
+      </div>
+      <label class="pp-switch" title="Master on/off">
+        <input type="checkbox" id="masterToggle" />
+        <span class="pp-slider"></span>
+      </label>
+    </header>
+
+    <div class="pp-site" id="siteRow">
+      <span class="pp-site-label">Current site</span>
+      <span class="pp-site-host" id="siteHost">—</span>
+    </div>
+
+    <div class="pp-scope" id="scopeRow" role="tablist" aria-label="Apply scope">
+      <button class="pp-scope-btn is-active" data-scope="site" role="tab">
+        This site
+      </button>
+      <button class="pp-scope-btn" data-scope="global" role="tab">
+        Everywhere
+      </button>
+    </div>
+
+    <div class="pp-personas" id="personaList"></div>
+
+    <div class="pp-features" id="featureList"></div>
+
+    <div class="pp-actions">
+      <button class="pp-btn" id="clearCookies">Clear cookies for site</button>
+      <button class="pp-btn pp-btn-ghost" id="openOptions">
+        Advanced settings
+      </button>
+    </div>
+
+    <div class="pp-toast" id="toast" aria-live="polite"></div>
+
+    <script src="personas.js"></script>
+    <script src="popup.js"></script>
+  </body>
+</html>

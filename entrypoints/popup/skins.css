@@ -1,0 +1,402 @@
+/* ============================================================================
+ * CORTEX SKINS
+ *
+ * A skin is ONE block of CSS custom properties — nothing else. The rest of the
+ * UI only ever reads these tokens (var(--bg), var(--accent), …), so a skin can
+ * never break layout: it can only recolour and re-style surfaces.
+ *
+ * ── HOW TO ADD YOUR OWN SKIN (for contributors) ─────────────────────────────
+ *   1. Copy the TEMPLATE block at the bottom of this file.
+ *   2. Rename [data-skin='template'] to your skin's id, e.g. [data-skin='neon'].
+ *   3. Set every token. Keep text/background contrast at WCAG AA (≥ 4.5:1 for
+ *      body text, ≥ 3:1 for large text and UI borders). Check both --fg/--bg
+ *      and --muted/--surface.
+ *   4. Register it in lib/skins/index.ts (one line: id + display name).
+ *   5. (Optional) note whether it's light or dark via --scheme so native
+ *      controls match.
+ *
+ * Every skin MUST define the full token contract below — no token is optional,
+ * because the UI assumes all of them resolve. Missing one = visual bugs.
+ * ========================================================================== */
+
+/* ── TOKEN CONTRACT ──────────────────────────────────────────────────────────
+ * --bg          page background
+ * --surface     raised panel / card / control background
+ * --surface-2   hover / pressed state of a surface
+ * --border      hairlines, dividers, control outlines
+ * --fg          primary text
+ * --muted       secondary text (labels, descriptions)
+ * --faint       tertiary text (section headings, hints)
+ * --accent      primary brand colour (selection, primary action, hero number)
+ * --accent-2    secondary accent (links, highlights)
+ * --accent-fg   text/icon colour ON an --accent fill
+ * --danger      destructive action (Erase)
+ * --ok          positive status (unlocked dot, “go”)
+ * --radius      large corner radius
+ * --radius-sm   small corner radius
+ * --shadow      popup / elevation shadow
+ * --scheme      'dark' or 'light' — sets native control rendering
+ * --font        body font stack (default: neutral system-native)
+ * --font-display optional wordmark font (defaults to --font)
+ * --mono        monospace stack for data (counts, tallies)
+ * ────────────────────────────────────────────────────────────────────────── */
+
+/* Bundled, offline fonts (OFL — see public/fonts/*-OFL.txt). Declared globally
+   but only USED by a skin that references them in --font/--font-display, so the
+   default neutral UI never pulls a pixel face. Nothing is fetched from a CDN. */
+@font-face {
+  font-family: 'PixelBody';
+  src: url('/fonts/VT323-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'PixelDisplay';
+  src: url('/fonts/PressStart2P-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+/* Michroma — open (OFL) stand-in for Eurostile: wide squared-geometric, the
+   quintessential 90s tech/Apple face. Used by iSkin. */
+@font-face {
+  font-family: 'Eurostyle';
+  src: url('/fonts/Michroma-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-display: swap;
+}
+
+/* Shared across skins. Default face is the system MONOSPACE stack (the same
+   font used for the data tally) applied throughout — a clean, techy neutral.
+   A skin opts into a different face by overriding --font / --font-display. */
+:root {
+  --radius: 10px;
+  --radius-sm: 8px;
+  --mono: 'SF Mono', 'JetBrains Mono', 'Roboto Mono', ui-monospace, 'Menlo', monospace;
+  --font: var(--mono);
+  --font-display: var(--mono);
+  /* Light/dark toggle glyphs — skin-aware. The button shows the glyph for the
+     mode it will SWITCH TO: --glyph-sun in dark mode (→ light), --glyph-moon in
+     light mode (→ dark). A skin may override for its own vibe. */
+  --glyph-sun: '☀';
+  --glyph-moon: '☾';
+  /* Primary fill (Unlock button, lock badge). Default = neon gradient; flat-era
+     skins (C64, Terminal) override to a solid accent. */
+  --fill-primary: linear-gradient(135deg, var(--accent), var(--accent-2));
+}
+
+/* ============================================================================
+ * Each skin defines a DARK and a LIGHT variant, selected by [data-mode] on
+ * <html>. A skin keeps its accent identity across modes; only surfaces/text
+ * neutrals flip. The DEFAULT (no attributes yet) is synthwave-dark via :root.
+ * Selector shape:  html[data-skin='x'][data-mode='dark'|'light'] { … }
+ * ========================================================================== */
+
+/* ── synthwave (DEFAULT) ─ Drive-at-night: near-black, hot neon, sunset orange.
+   Distinct from vaporwave's soft pastels — high contrast, dark, aggressive. */
+:root,
+[data-skin='synthwave'][data-mode='dark'] {
+  --bg: #0c0818;            /* almost-black indigo night */
+  --surface: #15102a;
+  --surface-2: #1f1740;
+  --border: #2e2154;
+  --fg: #fdf2ff;
+  --muted: #a89ad0;
+  --faint: #6f60a0;
+  --accent: #ff2e88;        /* hot crimson-pink neon */
+  --accent-2: #ff8a3d;      /* sunset orange — the signature, NOT cyan */
+  --accent-fg: #0c0818;
+  --danger: #ff5470;
+  --ok: #00f0a8;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.6), 0 10px 34px rgba(255, 46, 136, 0.28);
+  --scheme: dark;
+}
+[data-skin='synthwave'][data-mode='light'] {
+  --bg: #fff3f7;
+  --surface: #ffe6ee;
+  --surface-2: #ffd6e2;
+  --border: #ffc0d2;
+  --fg: #2a0f24;
+  --muted: #8a3d62;
+  --faint: #c06a8e;
+  --accent: #e0117a;       /* deep neon pink for contrast on light */
+  --accent-2: #d2630a;     /* burnt sunset orange */
+  --accent-fg: #ffffff;
+  --danger: #c1364a;
+  --ok: #0a9e78;
+  --shadow: 0 1px 2px rgba(120, 40, 160, 0.08), 0 6px 20px rgba(120, 40, 160, 0.12);
+  --scheme: light;
+}
+
+/* ── daylight ─ clean neutral ─────────────────────────────────────────────── */
+[data-skin='daylight'][data-mode='light'] {
+  --bg: #ffffff;
+  --surface: #f5f6f8;
+  --surface-2: #eceef2;
+  --border: #e4e7ec;
+  --fg: #16181d;
+  --muted: #5c6470;
+  --faint: #9098a3;
+  --accent: #5562ea;
+  --accent-2: #7b6cf0;
+  --accent-fg: #ffffff;
+  --danger: #c14a44;
+  --ok: #2f9e6f;
+  --shadow: 0 1px 2px rgba(20, 22, 30, 0.04), 0 6px 20px rgba(20, 22, 30, 0.06);
+  --scheme: light;
+}
+[data-skin='daylight'][data-mode='dark'] {
+  --bg: #0f1116;
+  --surface: #181b22;
+  --surface-2: #21252e;
+  --border: #282d38;
+  --fg: #eaecf0;
+  --muted: #a2a9b4;
+  --faint: #6b7480;
+  --accent: #8b94ff;
+  --accent-2: #a78bfa;
+  --accent-fg: #14161b;
+  --danger: #e0726c;
+  --ok: #4cc08a;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  --scheme: dark;
+}
+
+/* ── vaporwave ─ pastel pink / cyan / lavender retro ──────────────────────── */
+[data-skin='vaporwave'][data-mode='dark'] {
+  --bg: #2b1055;
+  --surface: #3a1c6e;
+  --surface-2: #472a82;
+  --border: #5b3fa0;
+  --fg: #f5e9ff;
+  --muted: #c9b3f0;
+  --faint: #9b86c8;
+  --accent: #ff71ce;
+  --accent-2: #01cdfe;
+  --accent-fg: #2b1055;
+  --danger: #ff6b81;
+  --ok: #05ffa1;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(255, 113, 206, 0.2);
+  --scheme: dark;
+}
+[data-skin='vaporwave'][data-mode='light'] {
+  --bg: #fef0fb;
+  --surface: #fbe0f6;
+  --surface-2: #f6d0f0;
+  --border: #f0bce8;
+  --fg: #43215c;
+  --muted: #8b5a93;
+  --faint: #b384bd;
+  --accent: #e0339e;
+  --accent-2: #0094c4;
+  --accent-fg: #ffffff;
+  --danger: #c1364a;
+  --ok: #0a9e78;
+  --shadow: 0 1px 2px rgba(180, 80, 180, 0.08), 0 6px 20px rgba(255, 113, 206, 0.15);
+  --scheme: light;
+}
+
+/* ── terminal ─ pure black screen, phosphor green throughout (B/G CRT) ────── */
+[data-skin='terminal'][data-mode='dark'] {
+  --bg: #000000;            /* true black screen */
+  --surface: #001a00;       /* barely-lifted green-black panel */
+  --surface-2: #002600;
+  --border: #0d4d0d;
+  --fg: #33ff33;            /* classic phosphor green text */
+  --muted: #1faa1f;         /* dimmer green for secondary text */
+  --faint: #138513;         /* dim green */
+  --accent: #39ff14;        /* bright phosphor highlight */
+  --accent-2: #00ff66;
+  --accent-fg: #000000;     /* black text on the green fill */
+  --danger: #ff3333;
+  --ok: #39ff14;
+  --shadow: 0 0 0 1px rgba(0, 255, 0, 0.12), 0 10px 30px rgba(0, 255, 20, 0.12);
+  --scheme: dark;
+}
+[data-skin='terminal'][data-mode='light'] {
+  --bg: #f3f7ef;
+  --surface: #e7efe1;
+  --surface-2: #dae6d2;
+  --border: #c2d4b8;
+  --fg: #173b17;
+  --muted: #3c6b3c;
+  --faint: #6b9468;
+  --accent: #1f9c0f;
+  --accent-2: #3aa82a;
+  --accent-fg: #ffffff;
+  --danger: #c1364a;
+  --ok: #1f9c0f;
+  --shadow: 0 1px 2px rgba(20, 60, 20, 0.06), 0 6px 20px rgba(20, 80, 20, 0.1);
+  --scheme: light;
+}
+/* VT323 is modelled on the DEC VT-series (VT100/VT102) terminal font — the
+   authentic CRT text. Applied to the Terminal skin in both modes. */
+[data-skin='terminal'] {
+  --font: 'PixelBody', ui-monospace, monospace;
+  --font-display: 'PixelBody', ui-monospace, monospace;
+  --mono: 'PixelBody', ui-monospace, monospace;
+  /* ASCII-art sun/moon, terminal-style. */
+  --glyph-sun: '*';
+  --glyph-moon: ')';
+  --fill-primary: var(--accent); /* flat — no gradients on a CRT */
+}
+html[data-skin='terminal'] body {
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+/* Pixel fonts (VT323) render condensed, and much of the UI uses fixed px sizes
+   that stay tiny otherwise. Scale the small text UP for the pixel skins so the
+   body reads at the larger size the font wants. Applies to terminal + C64. */
+html[data-skin='terminal'] .opt-desc,
+html[data-skin='commodore64'] .opt-desc,
+html[data-skin='terminal'] .opt-name,
+html[data-skin='commodore64'] .opt-name,
+html[data-skin='terminal'] .drow-title,
+html[data-skin='commodore64'] .drow-title,
+html[data-skin='terminal'] .subtitle,
+html[data-skin='commodore64'] .subtitle,
+html[data-skin='terminal'] .status,
+html[data-skin='commodore64'] .status,
+html[data-skin='terminal'] .act,
+html[data-skin='commodore64'] .act,
+html[data-skin='terminal'] .linkbtn,
+html[data-skin='commodore64'] .linkbtn,
+html[data-skin='terminal'] .skin-chip,
+html[data-skin='commodore64'] .skin-chip {
+  font-size: 15px;
+}
+html[data-skin='terminal'] .note,
+html[data-skin='commodore64'] .note,
+html[data-skin='terminal'] .drow-trade,
+html[data-skin='commodore64'] .drow-trade,
+html[data-skin='terminal'] .breakdown,
+html[data-skin='commodore64'] .breakdown {
+  font-size: 13px;
+}
+html[data-skin='terminal'] .label,
+html[data-skin='commodore64'] .label {
+  font-size: 15px;
+}
+
+/* ── commodore64 ─ blue screen + pixel font (carries a font) ──────────────── */
+[data-skin='commodore64'][data-mode='dark'] {
+  --bg: #3e31a2;            /* C64 border/screen blue */
+  --surface: #4a3cc0;
+  --surface-2: #5a4cd4;
+  --border: #7a6cf0;
+  --fg: #b8b0ff;            /* light-blue C64 text */
+  --muted: #9a90e8;
+  --faint: #7d72cf;
+  --accent: #a8ff60;
+  --accent-2: #ffe873;
+  --accent-fg: #3e31a2;
+  --danger: #ff7770;
+  --ok: #a8ff60;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(62, 49, 162, 0.4);
+  --scheme: dark;
+}
+[data-skin='commodore64'][data-mode='light'] {
+  --bg: #d6d0ff;           /* pale C64 blue paper */
+  --surface: #c7bfff;
+  --surface-2: #b8aef5;
+  --border: #9a8ee0;
+  --fg: #2e2270;
+  --muted: #51449e;
+  --faint: #7d72cf;
+  --accent: #2f7d00;       /* darker green for contrast on light */
+  --accent-2: #9a7b00;
+  --accent-fg: #ffffff;
+  --danger: #c1364a;
+  --ok: #2f7d00;
+  --shadow: 0 1px 2px rgba(62, 49, 162, 0.1), 0 6px 20px rgba(62, 49, 162, 0.18);
+  --scheme: light;
+}
+/* C64 carries the bundled pixel fonts in BOTH modes. */
+[data-skin='commodore64'] {
+  --font: 'PixelBody', ui-monospace, monospace;
+  --font-display: 'PixelDisplay', 'PixelBody', monospace;
+  --mono: 'PixelBody', ui-monospace, monospace;
+  /* ASCII-art sun/moon, 8-bit style. */
+  --glyph-sun: '*';
+  --glyph-moon: ')';
+  --fill-primary: var(--accent); /* flat — the C64 had no gradients */
+}
+/* VT323 renders condensed — nudge the base up so it stays legible. */
+html[data-skin='commodore64'] body {
+  font-size: 22px;
+  line-height: 1.25;
+}
+
+/* ── iskin ─ homage to the 1998 iMac G3 in TANGERINE: translucent orange candy
+   + Aqua gloss. Light = frosted white + tangerine; dark = smoked graphite with
+   lit orange. Keeps a glossy gradient fill (the one skin with gloss on purpose). */
+[data-skin='iskin'][data-mode='light'] {
+  --bg: #fff3ea;            /* pale warm glass */
+  --surface: #ffffff;
+  --surface-2: #ffe7d6;
+  --border: #ffcfac;
+  --fg: #4a2410;            /* deep tangerine ink */
+  --muted: #9a5a30;
+  --faint: #c79068;
+  --accent: #f56a1c;        /* tangerine */
+  --accent-2: #ffb12e;      /* amber highlight */
+  --accent-fg: #ffffff;
+  --danger: #e0506b;
+  --ok: #1ba86a;
+  --shadow: 0 1px 2px rgba(120, 60, 0, 0.1), 0 10px 30px rgba(245, 106, 28, 0.2);
+  --scheme: light;
+  --fill-primary: linear-gradient(180deg, color-mix(in srgb, var(--accent) 78%, #fff) 0%, var(--accent) 52%, color-mix(in srgb, var(--accent) 80%, #000) 100%);
+}
+[data-skin='iskin'][data-mode='dark'] {
+  --bg: #1f1208;            /* smoked amber-graphite glass */
+  --surface: #2c1a0d;
+  --surface-2: #3a2413;
+  --border: #523218;
+  --fg: #ffe9d6;
+  --muted: #d2a37a;
+  --faint: #a4754d;
+  --accent: #ff8a3d;        /* lit tangerine */
+  --accent-2: #ffc24d;
+  --accent-fg: #2a1405;
+  --danger: #ff6b81;
+  --ok: #2ce08a;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.5), 0 10px 30px rgba(255, 138, 61, 0.2);
+  --scheme: dark;
+  --fill-primary: linear-gradient(180deg, color-mix(in srgb, var(--accent) 70%, #fff) 0%, var(--accent) 55%, color-mix(in srgb, var(--accent) 75%, #000) 100%);
+}
+/* iSkin uses the Eurostile-style face (Michroma) for EVERYTHING — the full
+   squared 90s look. It's wide, so trim sizes/line-height and the wordmark. */
+[data-skin='iskin'] {
+  --font: 'Eurostyle', system-ui, -apple-system, sans-serif;
+  --font-display: 'Eurostyle', system-ui, sans-serif;
+  --mono: 'Eurostyle', ui-monospace, monospace;
+}
+html[data-skin='iskin'] body {
+  font-size: 13px;
+  line-height: 1.5;
+  letter-spacing: 0.01em;
+}
+html[data-skin='iskin'] .brand {
+  font-size: 15px; /* Michroma is wide — trim so CORTEX fits cleanly */
+  font-weight: 400;
+  letter-spacing: 0.02em;
+}
+
+/* ── TEMPLATE ─ copy this, rename, fill in, register in lib/skins/index.ts ──
+[data-skin='template'] {
+  --bg: ;
+  --surface: ;
+  --surface-2: ;
+  --border: ;
+  --fg: ;
+  --muted: ;
+  --faint: ;
+  --accent: ;
+  --accent-2: ;
+  --accent-fg: ;
+  --danger: ;
+  --ok: ;
+  --shadow: ;
+  --scheme: dark;
+}
+─────────────────────────────────────────────────────────────────────────── */

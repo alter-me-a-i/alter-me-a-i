@@ -1,0 +1,68 @@
+{
+  "manifest_version": 3,
+  "name": "Persona — Privacy Filter",
+  "version": "0.1.0",
+  "description": "Pick a privacy persona and control how much data leaks to trackers, cookies, and AI/LLM services.",
+  "default_locale": "en",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+  "permissions": [
+    "storage",
+    "declarativeNetRequest",
+    "scripting",
+    "activeTab",
+    "tabs",
+    "cookies"
+  ],
+  "host_permissions": ["<all_urls>"],
+  "background": {
+    "service_worker": "background.js",
+    "scripts": ["personas.js", "background.js"]
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "Persona — Privacy Filter",
+    "default_icon": {
+      "16": "icons/icon-16.png",
+      "32": "icons/icon-32.png"
+    }
+  },
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": true
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["personas.js", "content.js"],
+      "css": ["content.css"],
+      "run_at": "document_start",
+      "all_frames": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["personas.js"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "trackers",
+        "enabled": false,
+        "path": "rules/trackers.json"
+      }
+    ]
+  },
+  "browser_specific_settings": {
+    "gecko": {
+      "id": "persona-privacy-filter@local",
+      "strict_min_version": "128.0"
+    }
+  }
+}
