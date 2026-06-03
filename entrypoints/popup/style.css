@@ -116,6 +116,24 @@ body {
   margin: 4px 0 0;
 }
 
+/* Tasteful, low-key support ask — sits under the footer, never nags. */
+.support {
+  font-size: 11px;
+  color: var(--faint);
+  text-align: center;
+  margin: 8px 0 2px;
+}
+
+.support-link {
+  color: var(--accent);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.support-link:hover {
+  text-decoration: underline;
+}
+
 /* --- header --- */
 .header {
   display: flex;

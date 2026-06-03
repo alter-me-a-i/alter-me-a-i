@@ -396,6 +396,7 @@ async function renderHome() {
       <button class="linkbtn danger" id="wipe">Erase all</button>
     </div>
     <p id="err" class="err" role="alert"></p>
+    <p class="support">Free &amp; open source. If it's useful and you can spare it, <a class="support-link" href="https://buymeacoffee.com/marcoajello" target="_blank" rel="noopener noreferrer">buy me a coffee ☕</a></p>
   `);
 
   await renderSecurity();

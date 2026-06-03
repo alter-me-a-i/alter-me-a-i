@@ -133,6 +133,12 @@ browser WXT opens for you.
 - **Vault** — the standalone encrypted personal-data backbone (Python core lib +
   localhost daemon exposing the API): [me-alter/vault](https://github.com/me-alter/vault)
 
+## Support
+
+Alter/Me/A/I is free and open source. If it's useful and you can spare it, you can
+[buy me a coffee ☕](https://buymeacoffee.com/marcoajello). No pressure — the project
+stays free either way.
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md). The load-bearing invariant: **nothing
