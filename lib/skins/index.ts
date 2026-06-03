@@ -38,8 +38,8 @@ export const SKINS: Skin[] = [
 
 export const DEFAULT_SKIN = 'synthwave';
 
-const SKIN_KEY = 'cortex.skin';
-const MODE_KEY = 'cortex.mode';
+const SKIN_KEY = 'alter-me-a-i.skin';
+const MODE_KEY = 'alter-me-a-i.mode';
 
 /** Resolve an id to a known skin, falling back to the default. */
 export function getSkin(id: string | undefined | null): Skin {

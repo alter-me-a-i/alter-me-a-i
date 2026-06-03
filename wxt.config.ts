@@ -3,7 +3,7 @@ import { defineConfig } from 'wxt';
 // See https://wxt.dev/api/config.html
 export default defineConfig({
   manifest: {
-    // Display/brand name = the slashed wordmark (infrastructure-layer cortex).
+    // Display/brand name = the slashed wordmark.
     name: 'Alter/Me/A/I',
     description: 'The membrane between public expression and private repository — local-first, open-source. Gate your data, build your own AI.',
     // storage: vault salt + capture/defense settings live in chrome.storage.local.

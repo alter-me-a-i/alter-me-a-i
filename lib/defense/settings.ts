@@ -44,7 +44,7 @@ export const DEFAULT_DEFENSE: DefenseSettings = {
   custom: defaultCustomFlags(),
 };
 
-const KEY = 'cortex.defense.settings';
+const KEY = 'alter-me-a-i.defense.settings';
 
 /** Merge stored settings over defaults, deep-merging the nested `custom` flags. */
 function hydrate(stored: Partial<DefenseSettings> | undefined): DefenseSettings {

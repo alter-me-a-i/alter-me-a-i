@@ -1,5 +1,5 @@
 /*
- * xAPI bridge — proves (and enforces) that a Cortex DecisionEvent is losslessly
+ * xAPI bridge — proves (and enforces) that a Alter/Me/A/I DecisionEvent is losslessly
  * mappable to the xAPI / "Tin Can" statement standard (actor–verb–object,
  * with context + result). xAPI is the de-facto standard for capturing
  * experiences/choices, including in games and learning sims, so making our
@@ -36,10 +36,10 @@ export interface XapiStatement {
 }
 
 const VERB_CHOSE = 'http://adlnet.gov/expapi/verbs/chose'; // standard xAPI verb
-const EXT = 'https://cortex.local/xapi/ext'; // our extension namespace
+const EXT = 'https://alter-me-a-i.local/xapi/ext'; // our extension namespace
 
 /**
- * Convert a Cortex DecisionEvent into an xAPI statement. `actorName` defaults
+ * Convert a Alter/Me/A/I DecisionEvent into an xAPI statement. `actorName` defaults
  * to a neutral pseudonym — we never leak the real identity into an export.
  */
 export function decisionToXapi(e: DecisionEvent, actorName = 'me'): XapiStatement {

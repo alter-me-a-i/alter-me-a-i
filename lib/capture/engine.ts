@@ -1,7 +1,7 @@
 /*
  * The capture engine — the offensive spine, plus the content-side trigger for
  * the defensive layer. Runs inside the page and:
- *   - turns your behavior into CortexEvents (offense → vault), and
+ *   - turns your behavior into AlterMeAIEvents (offense → vault), and
  *   - strips tracking params per the active persona (defense → starve their pool),
  *     emitting a disclosure event when it does (defense feeds the corpus).
  *

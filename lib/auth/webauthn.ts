@@ -8,10 +8,10 @@
  * Zero-egress: rp.id is the extension's own origin; no RP server is contacted.
  */
 
-const RP_NAME = 'Cortex';
-const USER_NAME = 'cortex-vault';
+const RP_NAME = 'Alter/Me/A/I';
+const USER_NAME = 'alter-me-a-i-vault';
 /** Fixed PRF salt — same input → same PRF output for this vault. */
-export const PRF_SALT = new TextEncoder().encode('cortex.vault.prf.v1');
+export const PRF_SALT = new TextEncoder().encode('alter-me-a-i.vault.prf.v1');
 
 function bufToBytes(b: ArrayBuffer | ArrayBufferView): Uint8Array {
   return b instanceof ArrayBuffer ? new Uint8Array(b) : new Uint8Array(b.buffer);
@@ -132,7 +132,7 @@ export async function assertPasskeyWithPrf(allowIds: Uint8Array[] = []): Promise
  * ===========================================================================*/
 
 /** Carries the blob secret in the same shape as PrfResult so the keyring reuses it. */
-const LARGEBLOB_SALT = new TextEncoder().encode('cortex.vault.largeblob.v1');
+const LARGEBLOB_SALT = new TextEncoder().encode('alter-me-a-i.vault.largeblob.v1');
 
 /** Does a freshly-created passkey support largeBlob? Returns the id if so. */
 export async function createPasskeyWithLargeBlob(): Promise<{ credentialId: Uint8Array } | null> {

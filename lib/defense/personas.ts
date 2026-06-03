@@ -1,7 +1,7 @@
 /*
  * Personas — the defensive presets. A persona is a privacy profile: a named
  * bundle of flags controlling how much of you leaks to the sites you visit.
- * This is the "starve their pool" half of Cortex (offense = the vault; defense =
+ * This is the "starve their pool" half of Alter/Me/A/I (offense = the vault; defense =
  * personas + blocking). Ported from the persona-privacy-filter reference into a
  * typed, single-source-of-truth module shared by background, content, and popup.
  */

@@ -18,7 +18,7 @@
 import type { PersonaProfile } from './personas';
 
 /** A sentinel meaning "make this property unavailable" (e.g. disable an API). */
-export const DISABLE = Symbol('cortex.gate.disable');
+export const DISABLE = Symbol('alter-me-a-i.gate.disable');
 
 /** Which root object a gated property lives on. */
 export type GateRoot = 'navigator' | 'screen' | 'window';

@@ -52,7 +52,7 @@ function esc(s: string): string {
 
 /* --- collapsible sections -------------------------------------------------- */
 
-const COLLAPSE_KEY = 'cortex.collapsed';
+const COLLAPSE_KEY = 'alter-me-a-i.collapsed';
 
 /** Set of collapsed section ids, persisted locally (sync — no async on render). */
 function collapsedSet(): Set<string> {
@@ -103,7 +103,7 @@ const UNLOCK_DURATIONS: Array<{ label: string; value: number | null }> = [
   { label: '1 hour', value: 60 * 60_000 },
   { label: 'until browser closes', value: null },
 ];
-const TTL_KEY = 'cortex.unlock.ttl';
+const TTL_KEY = 'alter-me-a-i.unlock.ttl';
 
 function savedTtl(): number | null {
   try {
@@ -231,9 +231,9 @@ async function renderHome() {
   const mode = (document.documentElement.getAttribute('data-mode') as Mode) ?? 'dark';
 
   // On-page status bar: shown unless hidden; its count segment is opt-out.
-  const chipPref = await browser.storage.local.get(['cortex.chip.hidden', 'cortex.chip.count']);
-  const chipHidden = chipPref['cortex.chip.hidden'] === true;
-  const countShown = chipPref['cortex.chip.count'] !== false;
+  const chipPref = await browser.storage.local.get(['alter-me-a-i.chip.hidden', 'alter-me-a-i.chip.count']);
+  const chipHidden = chipPref['alter-me-a-i.chip.hidden'] === true;
+  const countShown = chipPref['alter-me-a-i.chip.count'] !== false;
 
   // Breakdown as an aligned monospace tally: label left, count right.
   const breakdown = stats
@@ -347,7 +347,7 @@ async function renderHome() {
         fsOk
           ? `<p id="train-status" class="note">${
               trainingFolder
-                ? `Training folder: <strong>${esc(trainingFolder.name)}</strong>/cortex-training.jsonl · <button class="inline-link" id="train-forget">change</button>`
+                ? `Training folder: <strong>${esc(trainingFolder.name)}</strong>/alter-me-a-i-training.jsonl · <button class="inline-link" id="train-forget">change</button>`
                 : 'Training builds a JSONL corpus to fine-tune your own AI — choose a folder to write it to, or it downloads.'
             }</p>`
           : ''
@@ -467,7 +467,7 @@ async function renderHome() {
 
   document.querySelector('#export')!.addEventListener('click', async () => {
     const out = await sendToBackground({ type: 'vault.export' });
-    if (out.ok && 'events' in out) download('cortex-export.json', JSON.stringify(out.events, null, 2), 'application/json');
+    if (out.ok && 'events' in out) download('alter-me-a-i-export.json', JSON.stringify(out.events, null, 2), 'application/json');
   });
 
   // Training: write the JSONL corpus to the chosen folder. If no folder yet,
@@ -480,7 +480,7 @@ async function renderHome() {
   document.querySelector('#train')!.addEventListener('click', async () => {
     if (!fsOk) {
       const out = await sendToBackground({ type: 'vault.trajectories' });
-      if (out.ok && 'jsonl' in out) download('cortex-training.jsonl', out.jsonl, 'application/jsonl');
+      if (out.ok && 'jsonl' in out) download('alter-me-a-i-training.jsonl', out.jsonl, 'application/jsonl');
       return;
     }
     try {
@@ -518,13 +518,13 @@ async function renderHome() {
   // On-page status bar show/hide (persisted; the bar reads this on each page).
   document.querySelector('#chiptoggle')!.addEventListener('change', async (e) => {
     const show = (e.target as HTMLInputElement).checked;
-    await browser.storage.local.set({ 'cortex.chip.hidden': !show });
+    await browser.storage.local.set({ 'alter-me-a-i.chip.hidden': !show });
     renderHome();
   });
 
   // Item-count segment in the status bar (default on).
   document.querySelector('#counttoggle')!.addEventListener('change', async (e) => {
-    await browser.storage.local.set({ 'cortex.chip.count': (e.target as HTMLInputElement).checked });
+    await browser.storage.local.set({ 'alter-me-a-i.chip.count': (e.target as HTMLInputElement).checked });
   });
 
   // Light/dark toggle — flips mode for the current skin, persists, re-renders
@@ -787,7 +787,7 @@ async function syncTraining(status: (msg: string) => void): Promise<void> {
   }
   const lines = out.jsonl ? out.jsonl.split('\n').filter(Boolean).length : 0;
   try {
-    await writeToFolder(handle, 'cortex-training.jsonl', out.jsonl);
+    await writeToFolder(handle, 'alter-me-a-i-training.jsonl', out.jsonl);
     status(`Synced ${lines} training sample${lines === 1 ? '' : 's'}.`);
   } catch (e) {
     status(`Write failed: ${String((e as Error)?.message ?? e)}`);

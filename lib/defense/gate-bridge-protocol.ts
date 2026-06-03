@@ -10,12 +10,12 @@
  * on `event.source === window` and our `channel` tag to ignore unrelated posts.
  *
  * Tradeoff note: postMessage on window is observable by the page, so a
- * determined fingerprinter could detect that Cortex is present. That is inherent
+ * determined fingerprinter could detect that Alter/Me/A/I is present. That is inherent
  * to any MAIN↔isolated bridge; for the conservative first cut we accept it.
  */
 
 /** Discriminator tagging our messages among all window.postMessage traffic. */
-export const GATE_CHANNEL = 'cortex:fp-gate';
+export const GATE_CHANNEL = 'alter-me-a-i:fp-gate';
 
 /** The message payload posted by the MAIN-world gate. */
 export interface GateMessage {

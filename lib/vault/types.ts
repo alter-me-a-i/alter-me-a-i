@@ -1,7 +1,7 @@
 /*
- * Cortex vault data model.
+ * Alter/Me/A/I vault data model.
  *
- * The vault is an append-only log of CortexEvents — observations of YOUR own
+ * The vault is an append-only log of AlterMeAIEvents — observations of YOUR own
  * behavior, captured locally and owned by you. This schema is the single most
  * load-bearing decision in the project: everything you can ever train your own
  * AI on is bounded by what an event is allowed to record. Keep it expressive,
@@ -155,7 +155,7 @@ export interface DecisionEvent extends BaseEvent {
   weight?: 'trivial' | 'normal' | 'major';
 }
 
-export type CortexEvent =
+export type AlterMeAIEvent =
   | NavigationEvent
   | InteractionEvent
   | AiExchangeEvent
@@ -182,7 +182,7 @@ type DistributiveOmit<T, K extends keyof any> = T extends unknown
   : never;
 
 /** An event before the vault stamps it with id/ts/v. */
-export type NewEvent = DistributiveOmit<CortexEvent, 'id' | 'ts' | 'v'>;
+export type NewEvent = DistributiveOmit<AlterMeAIEvent, 'id' | 'ts' | 'v'>;
 
 /** Filter for querying the log. All fields optional and AND-combined. */
 export interface EventQuery {

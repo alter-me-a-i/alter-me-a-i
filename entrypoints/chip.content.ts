@@ -18,8 +18,8 @@ import { sendToBackground } from '../lib/messages';
 import { loadMode, loadSkinId } from '../lib/skins';
 import { chipColors, chipStyle, type ChipColors, type ChipStyle } from '../lib/skins/chip-palette';
 
-const HIDE_KEY = 'cortex.chip.hidden';
-const COUNT_KEY = 'cortex.chip.count'; // show the library count segment (default on)
+const HIDE_KEY = 'alter-me-a-i.chip.hidden';
+const COUNT_KEY = 'alter-me-a-i.chip.count'; // show the library count segment (default on)
 
 export default defineContentScript({
   matches: ['<all_urls>'],
@@ -126,7 +126,7 @@ interface BarState {
   style: ChipStyle;
 }
 
-const MOUNT_ID = 'cortex-status-bar';
+const MOUNT_ID = 'alter-me-a-i-status-bar';
 // The closed shadow root persists across re-renders so updates are in-place
 // (no flicker, listener survives). Kept module-level so apply() can re-render.
 let barRoot: ShadowRoot | null = null;
@@ -224,7 +224,7 @@ function renderBar(state: BarState, onDismiss: () => void): void {
  * fonts gracefully if loading fails.
  */
 function ensureFontFaces(): void {
-  const id = 'cortex-bar-fonts';
+  const id = 'alter-me-a-i-bar-fonts';
   if (document.getElementById(id)) return;
   const get = browser.runtime.getURL as (p: string) => string;
   const style = document.createElement('style');

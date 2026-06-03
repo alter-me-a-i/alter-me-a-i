@@ -9,7 +9,7 @@
 
 import type { EventType } from './types';
 
-const DB_NAME = 'cortex';
+const DB_NAME = 'alter-me-a-i';
 const DB_VERSION = 1;
 const STORE = 'events';
 
@@ -17,7 +17,7 @@ export interface StoredRecord {
   id: string;
   ts: number;
   type: EventType;
-  /** Encrypted CortexEvent: AES-GCM iv + ciphertext. */
+  /** Encrypted AlterMeAIEvent: AES-GCM iv + ciphertext. */
   iv: Uint8Array;
   ct: Uint8Array;
 }

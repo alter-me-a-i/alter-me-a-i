@@ -44,7 +44,7 @@ async function applyTrackerRuleset(profile: PersonaProfile): Promise<void> {
       await dnr.updateEnabledRulesets({ disableRulesetIds: [TRACKER_RULESET] });
     }
   } catch (err) {
-    console.warn('[Cortex] tracker ruleset toggle failed:', err);
+    console.warn('[Alter/Me/A/I] tracker ruleset toggle failed:', err);
   }
 }
 
@@ -82,7 +82,7 @@ async function applyDynamicRules(profile: PersonaProfile): Promise<void> {
       addRules,
     });
   } catch (err) {
-    console.warn('[Cortex] dynamic rule update failed:', err);
+    console.warn('[Alter/Me/A/I] dynamic rule update failed:', err);
   }
 }
 

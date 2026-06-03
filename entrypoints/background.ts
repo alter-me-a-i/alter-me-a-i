@@ -84,7 +84,7 @@ export default defineBackground(() => {
   );
 });
 
-const AUTOLOCK_ALARM = 'cortex.autolock';
+const AUTOLOCK_ALARM = 'alter-me-a-i.autolock';
 
 /** Schedule (ttl>0), or clear (ttl 0/null), the auto-lock alarm. */
 async function scheduleAutoLock(ttlMs: number | null | undefined): Promise<void> {

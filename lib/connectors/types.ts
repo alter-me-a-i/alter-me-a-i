@@ -1,18 +1,18 @@
 /*
  * Connector ports — the "sockets" any data source plugs into. This is the R2D2
- * half of Cortex: the astromech that jacks into any port and carries data home.
+ * half of Alter/Me/A/I: the astromech that jacks into any port and carries data home.
  * (The C3PO half — interpreting/translating it into meaning — is the Mind.)
  *
  * A Connector's only job: authenticate (with explicit permission), pull from one
- * source, and normalize what it finds into CortexEvents that flow through the
+ * source, and normalize what it finds into AlterMeAIEvents that flow through the
  * SAME membrane → permission gate → neurotype as every other stream. Adding a
  * source is implementing this interface — never a refactor of the vault/Mind.
  *
  * IMPORTANT — runtime reality: a browser extension is sandboxed; some connectors
  * (drive scan, health-portal OAuth + bulk download, persistent pulls) can only
- * run in a LOCAL COMPANION app/native host, which feeds events to Cortex through
+ * run in a LOCAL COMPANION app/native host, which feeds events to Alter/Me/A/I through
  * the same permission gate. `runtime` declares where a connector must live so the
- * UI can show "needs the Cortex companion" vs. "runs in the extension".
+ * UI can show "needs the Alter/Me/A/I companion" vs. "runs in the extension".
  */
 
 import type { NewEvent, Sensitivity, Stream } from '../vault/types';

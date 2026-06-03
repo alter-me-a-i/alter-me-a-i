@@ -12,7 +12,7 @@ import { open, seal } from './crypto';
 import * as db from './store';
 import {
   SCHEMA_VERSION,
-  type CortexEvent,
+  type AlterMeAIEvent,
   type EventQuery,
   type EventType,
   type NewEvent,
@@ -43,7 +43,7 @@ import {
   type GrantScope,
 } from './permission';
 
-const KEYRING_KEY = 'cortex.keyring';
+const KEYRING_KEY = 'alter-me-a-i.keyring';
 
 function uuid(): string {
   return globalThis.crypto.randomUUID();
@@ -104,7 +104,7 @@ class Vault {
    * consumer (Mind, export, training, future connectors/sites). Only events the
    * grant's scope covers are returned; an unknown/expired grant is denied.
    */
-  async queryWithGrant(grantId: string, q: EventQuery = {}): Promise<CortexEvent[]> {
+  async queryWithGrant(grantId: string, q: EventQuery = {}): Promise<AlterMeAIEvent[]> {
     const grant = this.#grants.get(grantId);
     const now = Date.now();
     if (!grant) throw new PermissionDenied('no such grant');
@@ -218,7 +218,7 @@ class Vault {
 
   async append(input: NewEvent): Promise<string> {
     const { key, database } = this.#require();
-    const event = { ...input, id: uuid(), ts: Date.now(), v: SCHEMA_VERSION } as CortexEvent;
+    const event = { ...input, id: uuid(), ts: Date.now(), v: SCHEMA_VERSION } as AlterMeAIEvent;
     const sealed = await seal(key, JSON.stringify(event));
     await db.put(database, {
       id: event.id,
@@ -230,10 +230,10 @@ class Vault {
     return event.id;
   }
 
-  async query(q: EventQuery = {}): Promise<CortexEvent[]> {
+  async query(q: EventQuery = {}): Promise<AlterMeAIEvent[]> {
     const { key, database } = this.#require();
     const records = await db.readAll(database, q);
-    const events: CortexEvent[] = [];
+    const events: AlterMeAIEvent[] = [];
     for (const rec of records) {
       events.push(JSON.parse(await open(key, { iv: rec.iv, ct: rec.ct })));
     }
@@ -255,7 +255,7 @@ class Vault {
   }
 
   /** Your data, your pool: full decrypted export for the user to take with them. */
-  async export(): Promise<CortexEvent[]> {
+  async export(): Promise<AlterMeAIEvent[]> {
     return this.query();
   }
 
@@ -304,5 +304,5 @@ class Vault {
 /** Process-wide singleton — one writer per context (the background worker). */
 export const vault = new Vault();
 
-export type { CortexEvent, EventQuery, NewEvent, VaultStats } from './types';
+export type { AlterMeAIEvent, EventQuery, NewEvent, VaultStats } from './types';
 export type { TrajectoryOptions, TrajectorySample } from './trajectory';

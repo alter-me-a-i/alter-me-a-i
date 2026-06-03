@@ -13,7 +13,7 @@
 
 import { browser } from 'wxt/browser';
 
-const SESSION_KEY = 'cortex.vault.session';
+const SESSION_KEY = 'alter-me-a-i.vault.session';
 
 interface SessionBlob {
   /** Master key bytes as a plain array (structured-clonable in session store). */

@@ -28,7 +28,7 @@ export const DEFAULT_CAPTURE: CaptureSettings = {
   captureAi: true,
 };
 
-const KEY = 'cortex.capture.settings';
+const KEY = 'alter-me-a-i.capture.settings';
 
 export async function loadCaptureSettings(): Promise<CaptureSettings> {
   const stored = await browser.storage.local.get(KEY);

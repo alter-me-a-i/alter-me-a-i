@@ -1,6 +1,6 @@
 /*
  * TF-IDF vectorizer + cosine similarity — pure, zero-dependency. This is the
- * "embedding" that keeps Cortex pure: no model download, no shipped runtime
+ * "embedding" that keeps Alter/Me/A/I pure: no model download, no shipped runtime
  * dep, fully auditable. A document becomes a sparse vector of term -> tf*idf
  * weight; similarity is cosine between sparse vectors.
  *

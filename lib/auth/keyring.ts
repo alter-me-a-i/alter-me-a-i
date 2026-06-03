@@ -2,7 +2,7 @@
  * Envelope key management — the foundation for multiple unlock methods.
  *
  * Instead of deriving the vault key directly from a passphrase (which allows
- * exactly one unlock method), Cortex uses a random Vault Master Key (VMK) that
+ * exactly one unlock method), Alter/Me/A/I uses a random Vault Master Key (VMK) that
  * actually encrypts events, and stores it *wrapped* (encrypted) once per enrolled
  * method. Each method derives a Key-Encryption-Key (KEK) and unwraps the same
  * VMK — so a passphrase AND a passkey can both open the identical vault.

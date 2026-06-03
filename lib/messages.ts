@@ -6,7 +6,7 @@
 
 import { browser } from 'wxt/browser';
 import type {
-  CortexEvent,
+  AlterMeAIEvent,
   EventQuery,
   NewEvent,
   TrajectoryOptions,
@@ -46,7 +46,7 @@ export type VaultMessage =
 export type VaultResponse =
   | { ok: true; unlocked: boolean } // status / unlock / lock
   | { ok: true; id: string } // append
-  | { ok: true; events: CortexEvent[] } // query / export
+  | { ok: true; events: AlterMeAIEvent[] } // query / export
   | { ok: true; stats: VaultStats } // stats
   | { ok: true; jsonl: string } // trajectories
   | { ok: true; profile: MindProfile } // mind.profile

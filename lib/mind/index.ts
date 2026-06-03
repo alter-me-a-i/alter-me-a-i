@@ -1,5 +1,5 @@
 /*
- * The Mind — Cortex's personal model layer. Turns your decrypted corpus into:
+ * The Mind — Alter/Me/A/I's personal model layer. Turns your decrypted corpus into:
  *   - a profile (top interests, top sites, activity shape) — "what my data says
  *     about me", and
  *   - semantic search ("what have I looked into about X") over your own history.
@@ -12,7 +12,7 @@
  * the corpus becomes a usable model of you, owned entirely by you.
  */
 
-import { originLabel, type CortexEvent } from '../vault/types';
+import { originLabel, type AlterMeAIEvent } from '../vault/types';
 import { tokenize } from './tokenize';
 import { TfIdf, cosine, type Vector } from './vectorize';
 
@@ -21,7 +21,7 @@ interface MindDoc {
   id: string;
   ts: number;
   host: string;
-  kind: CortexEvent['type'];
+  kind: AlterMeAIEvent['type'];
   text: string;
   tokens: string[];
   vec: Vector;
@@ -31,7 +31,7 @@ export interface SearchHit {
   id: string;
   ts: number;
   host: string;
-  kind: CortexEvent['type'];
+  kind: AlterMeAIEvent['type'];
   snippet: string;
   score: number;
 }
@@ -61,7 +61,7 @@ export interface MindProfile {
 }
 
 /** Pull the trainable text out of an event (varies by kind). */
-function textOf(e: CortexEvent): string {
+function textOf(e: AlterMeAIEvent): string {
   switch (e.type) {
     case 'navigation':
       return [e.title, e.content].filter(Boolean).join('. ');
@@ -88,7 +88,7 @@ export class Mind {
   #built = false;
 
   /** Build (or rebuild) the model from a decrypted corpus. */
-  build(events: CortexEvent[]): this {
+  build(events: AlterMeAIEvent[]): this {
     const staged = events
       .map((e) => ({ e, text: textOf(e).trim() }))
       .filter(({ text }) => text.length > 0)

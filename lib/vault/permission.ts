@@ -3,7 +3,7 @@
  *
  * Per SUITE-MAP's load-bearing rule: data is read ONLY through a checkable
  * grant — explicit, scoped (to WHAT + for HOW LONG), revocable, default-deny.
- * Nothing — not even Cortex's own interpreter (the Mind), export, or training —
+ * Nothing — not even Alter/Me/A/I's own interpreter (the Mind), export, or training —
  * touches the corpus without a grant whose scope covers the request.
  *
  * This module is PURE: grant/scope types + the matching logic, no IO, no crypto.

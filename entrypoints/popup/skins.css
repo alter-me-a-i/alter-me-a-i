@@ -1,5 +1,5 @@
 /* ============================================================================
- * CORTEX SKINS
+ * ALTER/ME/A/I SKINS
  *
  * A skin is ONE block of CSS custom properties — nothing else. The rest of the
  * UI only ever reads these tokens (var(--bg), var(--accent), …), so a skin can
@@ -377,7 +377,7 @@ html[data-skin='iskin'] body {
   letter-spacing: 0.01em;
 }
 html[data-skin='iskin'] .brand {
-  font-size: 15px; /* Michroma is wide — trim so CORTEX fits cleanly */
+  font-size: 15px; /* Michroma is wide — trim so the brand wordmark fits cleanly */
   font-weight: 400;
   letter-spacing: 0.02em;
 }

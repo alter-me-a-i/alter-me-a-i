@@ -1,5 +1,5 @@
 /*
- * Cortex popup — clean, minimal, accessible. No decorative icons; only small
+ * Alter/Me/A/I popup — clean, minimal, accessible. No decorative icons; only small
  * monochrome UI affordances drawn in currentColor. Visible focus, calm tone.
  *
  * All COLOUR lives in skins.css as CSS-variable tokens (the skin contract).
@@ -35,7 +35,7 @@ body {
 }
 
 /* --- typography --- */
-/* CORTEX — the one all-caps, bold element. */
+/* Alter/Me/A/I — the brand wordmark, the one bold display element. */
 .brand {
   font-family: var(--font-display, var(--font));
   font-size: 18px;
@@ -55,7 +55,7 @@ body {
 
 /* Section headings read as small terminal labels — mono, tracked, faint,
    prefixed with a faint "//" comment marker for the retro-terminal cue. */
-/* Section headers — bold, regular case (only CORTEX is all-caps). */
+/* Section headers — bold, regular case (only the brand wordmark stands out). */
 .label {
   font-family: var(--font);
   font-size: 13px;

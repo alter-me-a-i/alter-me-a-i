@@ -14,8 +14,22 @@ stats-*.json
 .wxt
 web-ext.config.ts
 
-# Local tooling config (machine-specific)
-.claude/settings.local.json
+# Local tooling config (machine-specific) / agent state
+.claude/
+
+# Secrets & sensitive artifacts — never commit
+.env
+.env.*
+*.token
+*.enc
+*.pem
+*.key
+*.p12
+*.keystore
+secrets/
+**/conversations.json
+**/memories.json
+**/users.json
 
 # Editor directories and files
 .vscode/*

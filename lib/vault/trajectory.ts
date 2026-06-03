@@ -1,7 +1,7 @@
 /*
  * Trajectory export — the bridge from "captured corpus" to "training data".
  *
- * The vault stores raw CortexEvents. To train YOUR model on YOUR behavior, that
+ * The vault stores raw AlterMeAIEvents. To train YOUR model on YOUR behavior, that
  * corpus has to come out in a shape a fine-tuner understands. The de-facto
  * standard for supervised fine-tuning (OpenAI, Hugging Face, axolotl, etc.) is
  * JSONL where each line is one sample: { "messages": [{role, content}, ...] }.
@@ -15,7 +15,7 @@
  * it can be unit-tested in isolation and reused by any future training helper.
  */
 
-import { originLabel, type CortexEvent, type Sensitivity } from './types';
+import { originLabel, type AlterMeAIEvent, type Sensitivity } from './types';
 
 /** A single chat turn, role-tagged. Matches the OpenAI/HF SFT message shape. */
 export interface TrajectoryMessage {
@@ -30,7 +30,7 @@ export interface TrajectorySample {
   meta: {
     host: string;
     ts: number;
-    kind: CortexEvent['type'];
+    kind: AlterMeAIEvent['type'];
     tags?: string[];
   };
 }
@@ -87,7 +87,7 @@ function clean(text: string | undefined, redact: boolean): string {
 }
 
 /** Short human-readable summary of one non-AI event, for context lines. */
-function describe(event: CortexEvent): string | null {
+function describe(event: AlterMeAIEvent): string | null {
   const where = originLabel(event);
   switch (event.type) {
     case 'navigation':
@@ -120,7 +120,7 @@ function describe(event: CortexEvent): string | null {
  * the stored schema.
  */
 export function toTrajectories(
-  events: CortexEvent[],
+  events: AlterMeAIEvent[],
   options: TrajectoryOptions = {},
 ): TrajectorySample[] {
   const opts = { ...DEFAULTS, ...options };

@@ -33,7 +33,7 @@ async function main() {
 
   // webauthn (PRF) round-trip — simulate a 32-byte PRF output
   const prf = globalThis.crypto.getRandomValues(new Uint8Array(32));
-  const salt = new TextEncoder().encode('cortex.vault.prf.v1');
+  const salt = new TextEncoder().encode('alter-me-a-i.vault.prf.v1');
   const credId = globalThis.crypto.getRandomValues(new Uint8Array(16));
   const wk = await makeWebauthnWrap(prf, salt, credId, vmk);
   const back2 = await unwrapWithPrf(wk, prf);

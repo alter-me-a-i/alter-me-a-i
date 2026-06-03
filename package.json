@@ -1,6 +1,6 @@
 {
-  "name": "cortex",
-  "description": "Alter/Me/A/I — the local-first membrane between public expression and private repository. ('cortex' = the lowercase descriptive noun for the mediating engine; the brand is the slashed wordmark.)",
+  "name": "alter-me-a-i",
+  "description": "Alter/Me/A/I — the local-first membrane between public expression and private repository. The brand is the slashed wordmark; the filesystem/package slug is alter-me-a-i.",
   "private": true,
   "version": "0.0.0",
   "type": "module",

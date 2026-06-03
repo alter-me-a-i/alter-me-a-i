@@ -3,7 +3,7 @@
  *
  * Deliberately free of any `wxt`/extension imports so it can run under a
  * simulated DOM (happy-dom) in a plain Node test. Each module is a function
- * that wires up listeners against the current document and reports CortexEvents
+ * that wires up listeners against the current document and reports AlterMeAIEvents
  * through the injected `ctx.report`, returning a teardown function.
  */
 

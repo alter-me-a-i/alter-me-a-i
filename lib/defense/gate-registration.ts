@@ -16,7 +16,7 @@ import { browser } from 'wxt/browser';
 import { DEFAULT_DEFENSE, profileFor, type DefenseSettings } from './settings';
 
 /** Must match the generated script path for entrypoints/gate.content.ts. */
-const GATE_SCRIPT_ID = 'cortex-fp-gate';
+const GATE_SCRIPT_ID = 'alter-me-a-i-fp-gate';
 const GATE_JS = 'content-scripts/gate.js';
 
 /** Should the gate be active for the current (global) defense settings? */
@@ -63,6 +63,6 @@ export async function applyFingerprintGateRegistration(
       await scripting.unregisterContentScripts({ ids: [GATE_SCRIPT_ID] });
     }
   } catch (err) {
-    console.warn('[Cortex] fingerprint gate registration failed:', err);
+    console.warn('[Alter/Me/A/I] fingerprint gate registration failed:', err);
   }
 }

@@ -6,7 +6,7 @@
 import { tokenize } from './tokenize';
 import { TfIdf, cosine } from './vectorize';
 import { Mind } from './index';
-import type { CortexEvent, DecisionEvent } from '../vault/types';
+import type { AlterMeAIEvent, DecisionEvent } from '../vault/types';
 import { decisionToXapi } from '../vault/xapi';
 
 const results: Array<{ name: string; ok: boolean; detail: string }> = [];
@@ -38,10 +38,10 @@ const check = (name: string, ok: unknown, detail = '') =>
 }
 
 // --- Mind end-to-end ---
-const base = (over: Partial<CortexEvent>): CortexEvent =>
-  ({ id: Math.random().toString(36).slice(2), ts: Date.now(), v: 1, source: { host: 'x.com' }, sensitivity: 'personal', ...over } as CortexEvent);
+const base = (over: Partial<AlterMeAIEvent>): AlterMeAIEvent =>
+  ({ id: Math.random().toString(36).slice(2), ts: Date.now(), v: 1, source: { host: 'x.com' }, sensitivity: 'personal', ...over } as AlterMeAIEvent);
 
-const events: CortexEvent[] = [
+const events: AlterMeAIEvent[] = [
   base({ type: 'navigation', source: { host: 'arxiv.org' }, title: 'Attention Is All You Need transformer' } as any),
   base({ type: 'interaction', action: 'search', source: { host: 'google.com' }, text: 'how to fine-tune a transformer with LoRA' } as any),
   base({ type: 'ai_exchange', assistant: 'claude', source: { host: 'claude.ai' }, prompt: 'explain neural network embeddings', response: 'embeddings are dense vectors' } as any),
@@ -82,7 +82,7 @@ const events: CortexEvent[] = [
 
 // --- non-web stream: a gaming event (no host, has app) flows + labels right ---
 {
-  const gaming: CortexEvent[] = [
+  const gaming: AlterMeAIEvent[] = [
     base({
       type: 'interaction',
       action: 'search',

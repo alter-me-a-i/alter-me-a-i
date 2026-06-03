@@ -90,21 +90,21 @@ export const WHY_MORE_THAN_COOKIES: ProtectionTopic[] = [
   {
     title: 'Hidden trackers',
     body:
-      'Most pages quietly load little spy scripts from other companies (ad networks, “analytics”). They aren’t part of the page you wanted — they’re there to watch you. Cortex can refuse to load them.',
+      'Most pages quietly load little spy scripts from other companies (ad networks, “analytics”). They aren’t part of the page you wanted — they’re there to watch you. Alter/Me/A/I can refuse to load them.',
   },
   {
     title: 'Tracking tags in links',
     body:
-      'Web addresses often carry a long tail like “?utm_source=…&fbclid=…”. Those bits label where you came from. They aren’t needed to show the page, so Cortex snips them off.',
+      'Web addresses often carry a long tail like “?utm_source=…&fbclid=…”. Those bits label where you came from. They aren’t needed to show the page, so Alter/Me/A/I snips them off.',
   },
   {
     title: 'The “where you came from” note',
     body:
-      'Your browser normally tells each site which page sent you there, letting them build a trail of your hops across the web. Cortex can stop that note.',
+      'Your browser normally tells each site which page sent you there, letting them build a trail of your hops across the web. Alter/Me/A/I can stop that note.',
   },
   {
     title: 'Your device’s fingerprint',
     body:
-      'Even with no cookies at all, a site can read facts about your computer — processor, memory, Mac vs Windows, battery — and combine them into a near-unique signature, like recognising your handwriting. Cortex feeds back generic, everyone-looks-alike answers.',
+      'Even with no cookies at all, a site can read facts about your computer — processor, memory, Mac vs Windows, battery — and combine them into a near-unique signature, like recognising your handwriting. Alter/Me/A/I feeds back generic, everyone-looks-alike answers.',
   },
 ];

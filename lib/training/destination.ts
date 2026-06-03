@@ -1,5 +1,5 @@
 /*
- * Training destination — the user's chosen on-disk folder that Cortex writes the
+ * Training destination — the user's chosen on-disk folder that Alter/Me/A/I writes the
  * aggregated training corpus into. This is the "stub of your own AI": every
  * captured exchange, formatted as fine-tuning JSONL, lands in ONE folder you own.
  *
@@ -16,7 +16,7 @@
  *    permission prompts need a user gesture and aren't available in the worker.
  */
 
-const DB_NAME = 'cortex-training';
+const DB_NAME = 'alter-me-a-i-training';
 const STORE = 'handles';
 const HANDLE_KEY = 'destination';
 
@@ -85,7 +85,7 @@ function idbDel(key: string): Promise<void> {
 /** Prompt the user to choose a training folder; persists the handle. */
 export async function pickTrainingFolder(): Promise<DirHandle> {
   const handle = (await (globalThis as any).showDirectoryPicker({
-    id: 'cortex-training',
+    id: 'alter-me-a-i-training',
     mode: 'readwrite',
   })) as DirHandle;
   await idbSet(HANDLE_KEY, handle);
