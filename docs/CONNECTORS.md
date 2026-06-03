@@ -2,11 +2,11 @@
 
 > **The vision:** Cortex is R2D2 *and* C3PO in one. R2D2 = jacks into any port,
 > carries data home (the **connectors** here). C3PO = speaks every format,
-> interprets it (the **Mind / neurotype**). The membrane is the body that holds
+> interprets it (the **Mind / neurotype**). The cortex is the body that holds
 > both. This doc is the R2D2 half: the socket every data source plugs into.
 
 A **connector** authenticates to one source (with explicit permission), pulls,
-and normalizes into `CortexEvent`s that flow through the *same* membrane →
+and normalizes into `CortexEvent`s that flow through the *same* cortex →
 permission gate → neurotype as every other stream. Adding a source = implement
 the `Connector` interface in `lib/connectors/types.ts`. Never a vault/Mind
 refactor.
@@ -25,7 +25,7 @@ So connectors declare a **runtime**:
   OAuth against a health portal, bulk-download exports to your drive, and run
   scheduled pulls. It feeds normalized events to Cortex **through the same
   permission gate** — the nucleus still never leaves the device (zero-egress
-  holds; the companion is just another local organ behind the membrane).
+  holds; the companion is just another local organ behind the cortex).
 
 > R2D2 fully realized **requires the companion app.** The extension alone is a
 > partial R2D2 (browser-reachable sources only). This is the long-deferred
@@ -57,7 +57,7 @@ never ambient (the permission rule from SUITE-MAP).
 Two distinct things, kept distinct:
 
 1. **Capture** = normalized events into the encrypted vault (the corpus). Done
-   via connectors → membrane.
+   via connectors → cortex.
 2. **Archive to disk** = keeping the *raw source files* (the FHIR bundle, the
    media, the export) on your drive. This is the companion's job (the extension
    can only write to one granted folder on demand — see `lib/training/

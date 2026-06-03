@@ -1,6 +1,6 @@
 # Alter/Me/A/I
 
-> The local-first membrane between **public expression** and **private repository**.
+> The local-first cortex between **public expression** and **private repository**.
 > Gate your data. Build your own AI. Nothing leaves your device unless you decide.
 
 **Alter/Me/A/I** is a browser extension (Manifest V3, built with [WXT](https://wxt.dev) +
@@ -30,26 +30,26 @@ you can't use the service. Alter/Me/A/I inverts that:
 The raw record of your behaviour is yours. The model built from it is yours. The
 face you present to the world is yours to shape.
 
-## The model: membrane → neurotype → sociotype
+## The model: cortex → neurotype → sociotype
 
-Identity as a cell. Raw behaviour is the environment; the cortex is the membrane;
-the distilled self is the nucleus; the persona is the expressed phenotype.
+Identity as a cell. Raw behaviour is the environment; the cortex is the filtering
+boundary; the distilled self is the nucleus; the persona is the expressed phenotype.
 
 ```
 RAW EXHAUST  →  CORTEX        →  ME-ALTER         →  ALTER-ME
-your behavior   the MEMBRANE     the NEUROTYPE       the SOCIOTYPE
+your behavior   the FILTER       the NEUROTYPE       the SOCIOTYPE
 (capture)       filters +        aggregates +        expresses
                 permission        interprets          the face,
                 gate              (the model-of-you)   deployed outward
 ```
 
-- **Cortex — the membrane.** Capture gating, sensitivity classification,
+- **Cortex — the filter.** Capture gating, sensitivity classification,
   persona/disclosure rules, the permission gate. It *regulates flux*; it does not
   interpret. The only root of trust.
-- **me-alter — the neurotype.** Aggregates and interprets what the membrane lets
+- **me-alter — the neurotype.** Aggregates and interprets what the cortex lets
   through into a distilled *model-of-you* (the **Mind** layer).
 - **alter-me — the sociotype.** The persona expressed outward — the socially-
-  legible face, shaped by the membrane's rules.
+  legible face, shaped by the cortex's rules.
 
 The pieces fit together as: **extensions filter data → feed the [Vault](https://github.com/me-alter/vault)
 → a personal data-aggregation backbone**, with this extension as the engine at
@@ -76,7 +76,7 @@ the centre. See [`docs/SUITE-MAP.md`](docs/SUITE-MAP.md) for the full architectu
   status chip.
 
 Multiple **data streams** (web today; gaming / health / shopping designed) feed
-the same membrane → permission gate → neurotype. See [`docs/DATA-STREAMS.md`](docs/DATA-STREAMS.md).
+the same cortex → permission gate → neurotype. See [`docs/DATA-STREAMS.md`](docs/DATA-STREAMS.md).
 
 ## Architecture overview
 

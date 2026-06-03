@@ -1,7 +1,7 @@
 # The Ring — controlled data egress
 
 > The cortex collects locally; by default nothing leaves. **The Ring is the
-> membrane where data can exit — and it stays closed unless you deliberately
+> boundary where data can exit — and it stays closed unless you deliberately
 > open it.** Default state safe, opt-in states legible, you decide every time.
 
 This is the opposite of the standard web: there the default is extraction, the

@@ -1,7 +1,7 @@
 # Cortex data streams
 
 Cortex captures from many **life-streams**, not just web browsing. A stream is a
-*source domain*; every stream feeds the same membrane → permission gate →
+*source domain*; every stream feeds the same cortex → permission gate →
 neurotype (the Mind). Adding a stream must be a **new module, never a refactor**
 of the vault, Mind, or personas.
 
@@ -11,7 +11,7 @@ See the suite framing in [`SUITE-MAP.md`](SUITE-MAP.md) and the directions in
 ## The model
 
 ```
-SOURCE (per stream)  →  normalize  →  CortexEvent  →  membrane (Cortex)
+SOURCE (per stream)  →  normalize  →  CortexEvent  →  cortex
  web / gaming /          to the         {stream, type,    • sensitivity
  health / shopping       shared         source, …}        • permission gate
                          schema                            → vault → Mind
@@ -45,7 +45,7 @@ directly, or non-web events show as `undefined`.
 ## Per-stream sensitivity + permission (NOT uniform)
 
 Health ≠ web. Each stream sets its own **sensitivity** (drives redaction +
-whether it may feed training) and its own **permission** scope at the membrane:
+whether it may feed training) and its own **permission** scope at the cortex:
 
 - **web** — `personal` by default; sensitive hosts (bank/health/gov) bump up.
 - **gaming** — usually `public`/`personal`; low stakes.

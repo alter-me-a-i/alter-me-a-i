@@ -29,7 +29,7 @@ export type EventType =
  * Which life-stream an event came from. Orthogonal to EventType: `type` is the
  * SHAPE of the observation, `stream` is the SOURCE DOMAIN it belongs to. Capture
  * is source-pluggable — new streams (gaming/health/shopping) flow into the same
- * membrane, permission gate, and neurotype. Absent ⇒ 'web' (back-compat: every
+ * cortex, permission gate, and neurotype. Absent ⇒ 'web' (back-compat: every
  * event written before this field existed is web behaviour).
  *
  * Per-stream sensitivity + permission scoping differ (health ≠ web); see

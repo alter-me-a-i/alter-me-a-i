@@ -26,7 +26,7 @@ npm run compile    # type-check (tsc --noEmit)
 ## Guidelines
 
 - **Read [`docs/SUITE-MAP.md`](docs/SUITE-MAP.md) first** — it defines the trust
-  boundaries and the membrane/neurotype/sociotype model the code follows.
+  boundaries and the cortex/neurotype/sociotype model the code follows.
 - **Keep capture source-agnostic.** Adding a data stream should be a new module,
   not a refactor of the vault, Mind, or personas. See
   [`docs/DATA-STREAMS.md`](docs/DATA-STREAMS.md).

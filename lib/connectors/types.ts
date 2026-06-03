@@ -5,7 +5,7 @@
  *
  * A Connector's only job: authenticate (with explicit permission), pull from one
  * source, and normalize what it finds into AlterMeAIEvents that flow through the
- * SAME membrane → permission gate → neurotype as every other stream. Adding a
+ * SAME cortex → permission gate → neurotype as every other stream. Adding a
  * source is implementing this interface — never a refactor of the vault/Mind.
  *
  * IMPORTANT — runtime reality: a browser extension is sandboxed; some connectors
@@ -62,7 +62,7 @@ export interface ConnectorInfo {
  * The socket contract. A source implements this; the host (extension or
  * companion) calls `pull()` only when `grant.enabled`. `pull` returns
  * normalized events — it NEVER writes to the vault directly; the host appends
- * them through the permission gate so the membrane stays the single chokepoint.
+ * them through the permission gate so the cortex stays the single chokepoint.
  */
 export interface Connector {
   readonly info: ConnectorInfo;

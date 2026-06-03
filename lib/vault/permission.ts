@@ -1,5 +1,5 @@
 /*
- * The permission gate — the membrane's doorman.
+ * The permission gate — the cortex's doorman.
  *
  * Per SUITE-MAP's load-bearing rule: data is read ONLY through a checkable
  * grant — explicit, scoped (to WHAT + for HOW LONG), revocable, default-deny.

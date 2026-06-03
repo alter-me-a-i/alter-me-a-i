@@ -1,5 +1,5 @@
 /*
- * The status bar — the membrane made visible at the edge of the page.
+ * The status bar — the cortex made visible at the edge of the page.
  *
  * A small, dismissible corner bar showing three live states as TEXT (no icons /
  * clip-art): Protection (the active persona), Capture (on/off), and Vault

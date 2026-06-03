@@ -1,6 +1,6 @@
 # Alter/Me/A/I — architecture map
 
-> Status: framework **settled** (membrane model), naming **locked** (2026-06-01).
+> Status: framework **settled** (cortex model), naming **locked** (2026-06-01).
 > This doc defines trust boundaries. For a privacy product the trust boundary
 > *is* the architecture, so it is committed before the connector/site components
 > are built.
@@ -31,7 +31,7 @@ new pairs extend it infinitely.
 
 - **Hub (centre):** Alter/Me/A/I — the open-source extension that mediates
   between public expression and private repository at every domain of life. The
-  membrane. Everything interacts with it.
+  cortex. Everything interacts with it.
 - **Spokes (paired vertices, each a public/private dyad):**
   - **Personae / Vault** — alter-me.ai / me-alter.ai (priority #1; built).
   - **Heuristics / Learning** — Marco's two podcasts (*Listening to Myself —
@@ -57,7 +57,7 @@ Every vertex is *itself the whole pattern at a smaller scale*. The personae site
 has its own internal public/private structure; the vault has its own; and so on
 at every depth. **Implication for builds:** a vertex isn't a flat page — its
 internal structure should mirror the hub's public/private split. When designing
-any vertex (or any component inside one), ask "where is *its* membrane, its
+any vertex (or any component inside one), ask "where is *its* cortex, its
 public face, its private holding?" The answer should always exist.
 
 Proxy products (alter-proxy / proxy-alter) are **parked** until the extension is
@@ -67,31 +67,31 @@ ready to distribute (they were download/setup surfaces — premature now).
 
 Alter/Me/A/I is **local-first, permission-gated**. Raw self-data lives on-device.
 Nothing crosses a boundary — inward to the interpreter, or outward to the world
-— except through an explicit, scoped, revocable **permission**. The membrane is
+— except through an explicit, scoped, revocable **permission**. The cortex is
 not a wall; it is a selectively-permeable gate with a doorman.
 
-## The model: membrane → neurotype → sociotype
+## The model: cortex → neurotype → sociotype
 
-Identity as a cell. Raw behaviour is the environment; Cortex is the membrane;
-the distilled self is the nucleus; the persona is the expressed phenotype.
+Identity as a cell. Raw behaviour is the environment; Cortex is the filtering
+boundary; the distilled self is the nucleus; the persona is the expressed phenotype.
 
 ```
 RAW EXHAUST  →  CORTEX        →  ME-ALTER         →  ALTER-ME
-your behavior   the MEMBRANE     the NEUROTYPE       the SOCIOTYPE
+your behavior   the FILTER       the NEUROTYPE       the SOCIOTYPE
 (capture)       filters +        aggregates +        expresses
                 permission        interprets          the face,
                 gate              (the model-of-you)   deployed outward
 ```
 
-- **Cortex — the membrane (marcoajello.ai is its page).** Filters: capture
+- **Cortex — the filter (marcoajello.ai is its page).** Filters: capture
   gating, sensitivity classification, persona/disclosure rules, the permission
   gate. It *regulates flux*; it does not interpret. The raw exhaust lives behind
   it, on-device. The only root of trust.
-- **me-alter — the neurotype.** Aggregates + interprets what the membrane lets
+- **me-alter — the neurotype.** Aggregates + interprets what the cortex lets
   through into the distilled *model-of-you* (this is the **Mind** layer:
   `profile()`, `search()`, `ask()`). How you are actually wired. The nucleus.
 - **alter-me — the sociotype.** The persona expressed outward — the socially-
-  legible face, shaped by the membrane's rules. How the world reads you.
+  legible face, shaped by the cortex's rules. How the world reads you.
 
 Direction mapping (see [`AI-DIRECTIONS.md`](AI-DIRECTIONS.md)): me-alter =
 inward/offense (B, build the model); alter-me = outward/defense (A, present a
@@ -115,7 +115,7 @@ controlled face).
 
 ## Framework persists; implementation can change
 
-The durable thing is the framework (**membrane / neurotype / sociotype,
+The durable thing is the framework (**cortex / neurotype / sociotype,
 permission-gated**). Cortex, the vault, the TF-IDF Mind, "powered by Claude" —
 these are *current implementations* of it, swappable behind stable surfaces (the
 Mind is already behind an interface so a neural backend can replace TF-IDF; skins
@@ -126,7 +126,7 @@ can be re-powered indefinitely without changing what it *means*.
 
 ```
 marcoajello.ai           = the Cortex page (download / landing / hub, links out)
-Cortex extension         = the membrane — local root of trust, on-device engine
+Cortex extension         = the filter — local root of trust, on-device engine
 me-alter.ai              = the neurotype — model-of-you / interpreter (the Mind)
 alter-me.ai              = the sociotype — persona manager / outward face
 Substack                 = the podcast (linked from the Cortex page, for now)
@@ -140,7 +140,7 @@ No standalone proxy products.
 
 ## Data streams — build source-pluggable from the start
 
-The membrane must capture from **many sources**, not just web browsing. Planned
+The cortex must capture from **many sources**, not just web browsing. Planned
 streams (design the capture layer so adding one is a new module, not a refactor):
 
 - **Web behaviour** — navigation, search, AI exchanges (built today).
@@ -152,7 +152,7 @@ streams (design the capture layer so adding one is a new module, not a refactor)
   side of the original protocol.
 
 **Requirement:** every stream is a **capture source** that produces normalized
-`CortexEvent`s into the same membrane → same permission gate → same neurotype.
+`CortexEvent`s into the same cortex → same permission gate → same neurotype.
 Sensitivity classification and permission scoping are per-stream (health ≠ web).
 The event schema (`lib/vault/types.ts`) and capture engine (`lib/capture`) must
 stay source-agnostic so new streams plug in without touching the vault, the
